@@ -143,3 +143,47 @@ report.py can be used to generate a terminal-based report summary.
 
 dashboard/app.py (Flask) serves a live dashboard to visualize all the threats.
 
+
+
+🧠 LEARNINGS / CONCEPTS COVERED:
+Python file handling and hash operations
+
+Dictionary attacks and basic cryptanalysis
+
+Modular Python architecture (importable tools)
+
+Virtual environments and pip packaging
+
+Flask app routing, forms, and templating
+
+Report generation and output formatting
+
+
+
+
+📚 RESOURCES USED:
+Kali Linux
+
+RockYou Wordlist
+
+Python Docs
+
+Flask Framework
+
+OWASP Top 10
+
+
+
+⚠️ DISCLAIMER:
+CrackSuite is intended only for educational and ethical purposes. Do NOT use this tool on real systems, networks, or data without explicit permission. Misuse can be illegal.
+
+
+
+🧑‍💻 AUTHOR:
+Mohit Nigote
+CyberSec & Linux Enthusiast
+📧 - mohitnigote461001@gmail.com (use real if public)
+💻 GitHub:- ngmohit2003.
+x-x 
+MN.
+
