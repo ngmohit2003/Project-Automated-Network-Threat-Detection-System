@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta charset="UTF-8">
+
+    <title>Network Threat Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .card {
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        canvas {
+            background-color: #1e1e1e;
+        }
+    </style>
+</head>
+<body class="container mt-4">
+
+    <h1 class="text-center mb-4">🛡️ Network Threat Dashboard</h1>
+
+    <!-- Summary Cards -->
+    <div class="row text-center mb-4">
+        <div class="col-md-4">
+            <div class="card">
+                <h4>Total Threats</h4>
+                <p>{{ total_threats }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <h4>Unique Attackers</h4>
+                <p>{{ ip_counts|length }}</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <h4>Blocked IPs</h4>
+                <p>{{ blocked_ips|length }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Threat Bar Chart -->
+    <div class="card mb-4">
+        <h5>Threat Types</h5>
+        <canvas id="threatChart"></canvas>
+    </div>
+
+    <!-- IP Pie Chart -->
+    <div class="card mb-4">
+        <h5>Top Attacking IPs</h5>
+        <canvas id="ipChart"></canvas>
+    </div>
+
+    <!-- Blocked IP Table -->
+    <div class="card mb-5">
+        <h5>Blocked IPs</h5>
+        <table class="table table-dark table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>IP Address</th>
+                    <th>Hostname</th>
+                    <th>Blocked Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in blocked_ips %}
+                <tr>
+                    <td>{{ entry.ip }}</td>
+                    <td>{{ entry.hostname }}</td>
+                    <td>{{ entry.time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Chart Script -->
+    <script>
+        const threatData = {{ threat_counts | tojson }};
+        const ipData = {{ ip_counts | tojson }};
+
+        // Bar Chart - Threat Types
+        new Chart(document.getElementById('threatChart'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(threatData),
+                datasets: [{
+                    label: 'Threat Count',
+                    data: Object.values(threatData),
+                    backgroundColor: '#ff6384'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: '#fff' }
+                    },
+                    x: {
+                        ticks: { color: '#fff' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#fff' } }
+                }
+            }
+        });
+
+        // Pie Chart - IP Distribution
+        new Chart(document.getElementById('ipChart'), {
+            type: 'pie',
+            data: {
+                labels: Object.keys(ipData),
+                datasets: [{
+                    data: Object.values(ipData),
+                    backgroundColor: ['#dc3545', '#ffc107', '#0d6efd', '#20c997', '#6f42c1'],
+                    borderWidth: 0  // Removes white border
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: { color: '#fff' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
