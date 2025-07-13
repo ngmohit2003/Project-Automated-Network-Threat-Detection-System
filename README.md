@@ -163,26 +163,19 @@ Report generation and output formatting
 
 📚 RESOURCES USED:
 Kali Linux
-
-RockYou Wordlist
-
-Python Docs
-
-Flask Framework
-
-OWASP Top 10
+Python3 module
 
 
 
 ⚠️ DISCLAIMER:
-CrackSuite is intended only for educational and ethical purposes. Do NOT use this tool on real systems, networks, or data without explicit permission. Misuse can be illegal.
+NTDS is intended only for educational and ethical purposes. Do NOT use this tool on real systems, networks, or data without explicit permission. Misuse can be illegal.
 
 
 
 🧑‍💻 AUTHOR:
 Mohit Nigote
 CyberSec & Linux Enthusiast
-📧 - mohitnigote461001@gmail.com (use real if public)
+📧 - mohitnigote461001@gmail.com
 💻 GitHub:- ngmohit2003.
 x-x 
 MN.
